@@ -24,19 +24,19 @@ var displayable = [
 ];
 var filterDisplayable = function (selected, displayable) {
 	return displayable.filter((item) => {
-    return selected.includes(item.name);
-  });
+		return selected.includes(item.name);
+	});
 }
 var prioritySortDisplayable = function (required, filteredResults) {
 	filteredResults.map(filteredResult => {
-  	const index = required.indexOf(filteredResult.name);
-  	filteredResult.order = index >= 0 ? index: required.length;
-  });
-  filteredResults.sort(function(a, b){
-    if (a.order < b.order) { return -1; }
-    if (a.order > b.order) { return 1; }
-    return 0;
-  });
+		const index = required.indexOf(filteredResult.name);
+		filteredResult.order = index >= 0 ? index: required.length;
+	});
+	filteredResults.sort(function(a, b){
+		if (a.order < b.order) { return -1; }
+		if (a.order > b.order) { return 1; }
+		return 0;
+	});
 	return filteredResults;
 }
 var result = prioritySortDisplayable(required, filterDisplayable(selected, displayable));
